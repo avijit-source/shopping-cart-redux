@@ -56,6 +56,15 @@ const cartReducer = (state = initialState, action) => {
           Number(filteredTotal) - Math.ceil(Number(action.payload.price));
       }
       return { cart: filtered, total: Math.ceil(filteredTotal) };
+
+    case "REMOVE_CART_ITEM":
+      let found2 = state.cart.find((pr) => pr.id === action.payload.id);
+      const totalminus = Number(found2.qty) * Number(Math.ceil(found2.price));
+      let filtered2 = state.cart.filter(
+        (item) => item.id !== action.payload.id
+      );
+      let total2 = state.total - totalminus;
+      return { cart: [...filtered2], total: total2 };
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { fetchProducts } from "./redux/productActions";
 import { connect } from "react-redux";
-import { addCart, removeCart } from "./redux/cartActions";
+import { addCart, removeCart, removeCartItem } from "./redux/cartActions";
 import Spinner from "react-bootstrap/Spinner";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
@@ -10,7 +10,14 @@ import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import { isCarted } from "./utils/isCarted";
 
-function Products({ products, fetchProducts, cart, addCart, removeCart }) {
+function Products({
+  products,
+  fetchProducts,
+  cart,
+  addCart,
+  removeCart,
+  removeCartItem,
+}) {
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -48,7 +55,7 @@ function Products({ products, fetchProducts, cart, addCart, removeCart }) {
                     <Button
                       variant="danger"
                       size="sm"
-                      onClick={() => removeCart(product)}
+                      onClick={() => removeCartItem(product)}
                     >
                       Remove from cart
                     </Button>
@@ -82,6 +89,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchProducts: () => dispatch(fetchProducts()),
     addCart: (product) => dispatch(addCart(product)),
     removeCart: (product) => dispatch(removeCart(product)),
+    removeCartItem: (product) => dispatch(removeCartItem(product)),
   };
 };
 
