@@ -27,7 +27,7 @@ function Products({ products, fetchProducts, cart, addCart, removeCart }) {
           </div>
         ))} */}
 
-      <Row xs={1} md={2} lg={3} xl={4} className="g-4">
+      <Row xs={1} md={2} lg={3} xl={4} className="g-4 mx-3">
         {products.products.length > 0 &&
           products.products.map((product, idx) => (
             <Col key={product.id}>
